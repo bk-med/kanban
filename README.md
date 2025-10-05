@@ -101,9 +101,9 @@ npm list --depth=0
 npm start
 ```
 
-✅ **Frontend disponible sur** : `http://localhost:3001`
+✅ **Frontend disponible sur** : `http://localhost:3000`
 
-**Note** : Le navigateur s'ouvrira automatiquement sur `http://localhost:3001`
+**Note** : Le navigateur s'ouvrira automatiquement sur `http://localhost:3000`
 
 ### 4. 🚀 Démarrage Automatique (Recommandé)
 
@@ -120,7 +120,7 @@ chmod +x start.sh
 Ce script automatique :
 - ✅ Vérifie les prérequis (Python, Node.js, ports)
 - ✅ Démarre le backend Django sur le port 8000
-- ✅ Démarre le frontend React sur le port 3001
+- ✅ Démarre le frontend React sur le port 3000
 - ✅ Affiche les URLs d'accès
 - ✅ Gère les logs des deux serveurs
 
@@ -176,11 +176,11 @@ rm -rf node_modules package-lock.json
 npm install
 ```
 
-**Erreur : `Port 3001 already in use`**
+**Erreur : `Port 3000 already in use`**
 ```bash
 # Le script start.sh gère automatiquement cela
 # Ou manuellement :
-lsof -i :3001
+lsof -i :3000
 kill -9 PID
 ```
 
@@ -210,7 +210,7 @@ npm run build
 
 | Service | URL | Port | Description |
 |---------|-----|------|-------------|
-| **Frontend React** | http://localhost:3001 | 3001 | Interface utilisateur principale |
+| **Frontend React** | http://localhost:3000 | 3000 | Interface utilisateur principale |
 | **Backend Django** | http://localhost:8000 | 8000 | API REST |
 | **Admin Django** | http://localhost:8000/admin | 8000 | Interface d'administration Django |
 | **API Auth** | http://localhost:8000/api/auth/ | 8000 | Endpoints d'authentification |
@@ -221,7 +221,7 @@ npm run build
 ## 📱 Utilisation de l'Application
 
 ### 🏠 Page d'Accueil
-- **URL** : http://localhost:3001
+- **URL** : http://localhost:3000
 - **Fonctionnalités** : Connexion, Inscription, Navigation
 
 ### 📊 Dashboard Utilisateur
@@ -233,7 +233,7 @@ npm run build
 - **Fonctionnalités** : Gestion des tâches par drag & drop, modification des statuts
 
 ### 🔧 Interface d'Administration
-- **URL** : http://localhost:3001/admin
+- **URL** : http://localhost:3000/admin
 - **Accès** : Connexion avec compte admin (`admin` / `admin123`)
 - **Fonctionnalités** : Gestion complète des utilisateurs, projets, tâches
 
