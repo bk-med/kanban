@@ -49,63 +49,225 @@ Une application de gestion de projet Kanban complète avec API Django REST et in
 
 ## 🚀 Installation et Démarrage
 
-### Prérequis
-- Python 3.8+
-- Node.js 16+
-- npm ou yarn
+### 📋 Prérequis
+- **Python 3.8+** avec pip
+- **Node.js 16+** avec npm
+- **Git** pour cloner le projet
 
-### 1. Cloner le projet
+### 1. 📥 Cloner le projet
 ```bash
 git clone https://github.com/bk-med/kanban.git
 cd kanban
 ```
 
-### 2. Configuration Backend
+### 2. 🔧 Configuration Backend (Django)
 
 ```bash
 # Installer les dépendances Python
 pip install -r requirements.txt
 
-# Appliquer les migrations
+# Aller dans le dossier backend
 cd kanban_api
+
+# Appliquer les migrations de la base de données
 python manage.py migrate
 
-# Créer un superutilisateur (optionnel)
+# Créer un superutilisateur pour l'administration (optionnel)
 python manage.py createsuperuser
+# Suivre les instructions pour créer un compte admin
 
 # Démarrer le serveur Django
 python manage.py runserver
 ```
 
-Le backend sera disponible sur `http://localhost:8000`
+✅ **Backend disponible sur** : `http://localhost:8000`
+✅ **Interface d'administration Django** : `http://localhost:8000/admin`
 
-### 3. Configuration Frontend
+### 3. 🎨 Configuration Frontend (React)
+
+**Dans un nouveau terminal** (garder le backend en cours d'exécution) :
 
 ```bash
-# Installer les dépendances Node.js
+# Aller dans le dossier frontend
 cd frontend_kanban
+
+# Installer toutes les dépendances Node.js
 npm install
 
-# Démarrer le serveur de développement
+# Vérifier que l'installation s'est bien passée
+npm list --depth=0
+
+# Démarrer le serveur de développement React
 npm start
 ```
 
-Le frontend sera disponible sur `http://localhost:3001`
+✅ **Frontend disponible sur** : `http://localhost:3001`
 
-### 4. Démarrage Rapide (Script automatique)
+**Note** : Le navigateur s'ouvrira automatiquement sur `http://localhost:3001`
+
+### 4. 🚀 Démarrage Automatique (Recommandé)
+
+Pour démarrer backend et frontend en une seule commande :
 
 ```bash
-# Rendre le script exécutable
+# Rendre le script exécutable (première fois seulement)
 chmod +x start.sh
 
 # Démarrer l'application complète
 ./start.sh
 ```
 
-Ce script démarre automatiquement :
-- Le serveur Django sur le port 8000
-- Le serveur React sur le port 3001
-- Vérifie les prérequis et ports disponibles
+Ce script automatique :
+- ✅ Vérifie les prérequis (Python, Node.js, ports)
+- ✅ Démarre le backend Django sur le port 8000
+- ✅ Démarre le frontend React sur le port 3001
+- ✅ Affiche les URLs d'accès
+- ✅ Gère les logs des deux serveurs
+
+### 5. 🛑 Arrêt de l'Application
+
+```bash
+# Utiliser le script d'arrêt
+./stop.sh
+
+# Ou arrêter manuellement avec Ctrl+C dans chaque terminal
+```
+
+## 🔧 Dépannage et Solutions aux Problèmes Courants
+
+### ❌ Problèmes Backend (Django)
+
+**Erreur : `ModuleNotFoundError`**
+```bash
+# Vérifier que vous êtes dans le bon environnement Python
+pip install -r requirements.txt
+
+# Ou créer un environnement virtuel
+python -m venv venv
+source venv/bin/activate  # Sur Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+**Erreur : `Port 8000 already in use`**
+```bash
+# Trouver le processus utilisant le port 8000
+lsof -i :8000
+
+# Tuer le processus (remplacer PID par le numéro affiché)
+kill -9 PID
+```
+
+**Erreur de migrations :**
+```bash
+cd kanban_api
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### ❌ Problèmes Frontend (React)
+
+**Erreur : `npm install` échoue**
+```bash
+# Nettoyer le cache npm
+npm cache clean --force
+
+# Supprimer node_modules et réinstaller
+rm -rf node_modules package-lock.json
+npm install
+```
+
+**Erreur : `Port 3001 already in use`**
+```bash
+# Le script start.sh gère automatiquement cela
+# Ou manuellement :
+lsof -i :3001
+kill -9 PID
+```
+
+**Erreur TypeScript :**
+```bash
+# Vérifier les erreurs TypeScript
+npm run build
+
+# Nettoyer et reconstruire
+rm -rf build
+npm run build
+```
+
+### ❌ Problèmes de Connexion
+
+**Frontend ne peut pas se connecter au backend :**
+1. Vérifier que le backend est démarré sur `http://localhost:8000`
+2. Vérifier les logs dans la console du navigateur
+3. Vérifier que CORS est configuré (déjà fait dans le projet)
+
+**Erreur 401/403 :**
+1. Vérifier que vous êtes connecté
+2. Rafraîchir la page
+3. Se reconnecter avec les comptes de test
+
+## 🌐 URLs et Ports
+
+| Service | URL | Port | Description |
+|---------|-----|------|-------------|
+| **Frontend React** | http://localhost:3001 | 3001 | Interface utilisateur principale |
+| **Backend Django** | http://localhost:8000 | 8000 | API REST |
+| **Admin Django** | http://localhost:8000/admin | 8000 | Interface d'administration Django |
+| **API Auth** | http://localhost:8000/api/auth/ | 8000 | Endpoints d'authentification |
+| **API Projects** | http://localhost:8000/api/projects/ | 8000 | Endpoints des projets |
+| **API Tasks** | http://localhost:8000/api/tasks/ | 8000 | Endpoints des tâches |
+| **API Admin** | http://localhost:8000/api/admin/ | 8000 | Endpoints d'administration |
+
+## 📱 Utilisation de l'Application
+
+### 🏠 Page d'Accueil
+- **URL** : http://localhost:3001
+- **Fonctionnalités** : Connexion, Inscription, Navigation
+
+### 📊 Dashboard Utilisateur
+- **Accès** : Après connexion avec un compte utilisateur
+- **Fonctionnalités** : Vue d'ensemble des projets, création de projets
+
+### 📋 Kanban Board
+- **Accès** : Depuis le dashboard → Cliquer sur un projet
+- **Fonctionnalités** : Gestion des tâches par drag & drop, modification des statuts
+
+### 🔧 Interface d'Administration
+- **URL** : http://localhost:3001/admin
+- **Accès** : Connexion avec compte admin (`admin` / `admin123`)
+- **Fonctionnalités** : Gestion complète des utilisateurs, projets, tâches
+
+### 6. 🔄 Commandes de Développement Utiles
+
+**Backend (dans `kanban_api/`) :**
+```bash
+# Créer de nouvelles migrations après modification des modèles
+python manage.py makemigrations
+
+# Appliquer les migrations
+python manage.py migrate
+
+# Créer un superutilisateur
+python manage.py createsuperuser
+
+# Accéder au shell Django
+python manage.py shell
+```
+
+**Frontend (dans `frontend_kanban/`) :**
+```bash
+# Installer une nouvelle dépendance
+npm install nom-du-package
+
+# Construire pour la production
+npm run build
+
+# Vérifier les erreurs TypeScript
+npm run build
+
+# Nettoyer le cache
+npm cache clean --force
+```
 
 ## 🔑 Comptes de Test
 
